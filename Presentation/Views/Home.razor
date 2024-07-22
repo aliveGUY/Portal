@@ -1,0 +1,10 @@
+@page "/"
+
+<PageTitle>Home Page</PageTitle>
+
+<section>
+  <center>
+    <h2>Title</h2>
+    <ul id="posts" hx-get="/posts" hx-trigger="load" hx-swap="outerHTML">Loading posts...</ul>
+  </center>
+</section>

@@ -1,0 +1,16 @@
+@model List<Portal.Models.Post>
+@{
+  ArgumentNullException.ThrowIfNull(Model);
+}
+
+<ul class="posts">
+  @foreach (var post in Model)
+  {
+    <li class="post">
+      <a href="/post/@post.Id">
+        <h2>@post.Title</h2>
+        <p>@post.Content</p>
+      </a>
+    </li>
+  }
+</ul>

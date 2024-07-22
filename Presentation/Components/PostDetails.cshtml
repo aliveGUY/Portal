@@ -1,0 +1,17 @@
+@model Portal.Models.Post
+@{
+  ArgumentNullException.ThrowIfNull(Model);
+}
+
+<h2>title: @Model.Title</h2>
+<p>content: @Model.Content</p>
+<button hx-delete="posts/@Model.Id" hx-on="htmx:afterOnLoad">delete</button>
+
+<script src="https://unpkg.com/htmx.org@1.7.0"></script>
+<script>
+  document.body.addEventListener('htmx:afterOnLoad', function(evt) {
+    if (evt.detail.path === 'posts/@Model.Id' && evt.detail.requestConfig.verb === 'DELETE') {
+      window.location.href = '/';
+    }
+  });
+</script>

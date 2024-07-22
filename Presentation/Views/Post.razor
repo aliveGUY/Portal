@@ -1,0 +1,14 @@
+@page "/post/{id}"
+
+<PageTitle>Post</PageTitle>
+
+<h1>Post page</h1>
+
+<div id="post-content" hx-get="/posts/@id" hx-trigger="load">
+  Loading post...
+</div>
+
+@code {
+  [Parameter]
+  public required string id { get; set; }
+}
