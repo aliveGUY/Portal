@@ -1,0 +1,26 @@
+@model Portal.Pages.CreatePost
+
+<form hx-post="@Url.Page("CreatePost")" hx-swap="outerHTML"
+  _="on htmx:beforeSend set #submitButton.disabled to 'disabled'">
+
+  <div>
+    <label asp-for="Post.Title"></label>
+    <input type="text" asp-for="Post.Title">
+    <span asp-validation-for="Post.Title"></span>
+  </div>
+
+  <div>
+    <label asp-for="Post.Content"></label>
+    <input type="text" asp-for="Post.Content">
+    <span asp-validation-for="Post.Content"></span>
+  </div>
+
+  <button id="submitButton" type="submit">
+    <span class="htmx-indicator">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="visually-hidden">Loading...</span>
+    </span>
+    Submit
+  </button>
+
+</form>

@@ -1,0 +1,10 @@
+@page "/post/new"
+@model Portal.Pages.CreatePost
+@{
+  ViewData["Title"] = "Share your experiance";
+}
+
+<section>
+  <h2>Add new Post</h2>
+  @await Html.PartialAsync("_Form")
+</section>

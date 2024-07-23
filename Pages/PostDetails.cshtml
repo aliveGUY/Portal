@@ -1,0 +1,12 @@
+@page "/post/{id:int}"
+@model Portal.Pages.PostDetails
+@{
+  ViewData["Title"] = Model.Post?.Title ?? "Post Details";
+  ViewData["Description"] = Model.Post?.Content ?? "Post Details";
+}
+
+<h1>Post Details</h1>
+<h1>@Model.Post?.Title</h1>
+<p>@Model.Post?.Content</p>
+
+<button hx-delete="@Url.Page("PostDetails")">Delete</button>

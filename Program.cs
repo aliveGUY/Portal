@@ -1,18 +1,26 @@
 using Microsoft.EntityFrameworkCore;
+using Lib.AspNetCore.ServerSentEvents;
+using Microsoft.AspNetCore.Mvc;
 using DotNetEnv;
 
-using Portal.Presentation;
+using Portal.Models;
 using Portal.Interfaces;
 using Portal.Repository;
 using Portal.Data;
 
-
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorComponents().AddInteractiveServerComponents();
-builder.Services.AddControllers();
-builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+builder.Services.AddRazorPages(o => {
+    // this is to make demos easier
+    // don't do this in production
+    o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+}).AddRazorRuntimeCompilation();
+
+builder.Services.AddServerSentEvents();
+builder.Services.AddHostedService<ServerEventsWorker>();
+
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
@@ -23,21 +31,11 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    app.UseHsts();
-}
-
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseRouting();
-app.UseAntiforgery();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-app.MapControllers();
+app.MapServerSentEvents("/rn-updates");
+app.MapRazorPages();
 
 app.Run();

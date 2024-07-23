@@ -1,0 +1,20 @@
+﻿@page "/"
+@model Portal.Pages.Home
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Description"] = "Home Page metadata description";
+}
+
+<h1>Home Page</h1>
+
+<ul>
+  @foreach(var Post in Model.Posts)
+  {
+    <li>
+      <a href="/post/@Post.Id">
+        <p>@Post.Title</p>
+        <p>@Post.Content</p>
+      </a>
+    </li>
+  }
+</ul>
