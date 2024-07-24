@@ -17,7 +17,7 @@ namespace Portal.Repository
 
     public async Task<Post?> DeleteAsync(int id)
     {
-      var postModel = await _context.Posts.FirstOrDefaultAsync(x => id == x.Id);
+      var postModel = await _context.Posts.FirstOrDefaultAsync(x => id == x.PostId);
       if (null == postModel) return null;
       _context.Posts.Remove(postModel);
       await _context.SaveChangesAsync();
