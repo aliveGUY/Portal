@@ -1,0 +1,60 @@
+.application-root {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+
+.application-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.application-icon {
+  height: 64px;
+  width: 64px;
+}
+
+.application-name {
+  font-size: 2rem;
+}
+
+nav {
+  position: fixed;
+  top: 62px;
+  height: 100%;
+  background-color: white;
+  width: 200px;
+  transition: transform .3s ease;
+  border-right: 1px solid black;
+}
+
+.application-header:has([expanded="true"])+nav {
+  transform: translateX(0);
+}
+
+.application-header:has([expanded="false"])+nav {
+  transform: translateX(-150%);
+}
+
+@media screen and (min-width: 768px) {
+  .application-root {
+    grid-template-rows: 1fr;
+    grid-template-columns: 200px 1fr;
+  }
+
+  nav {
+    position: static;
+    border-right: none;
+    transition: none;
+  }
+
+  .application-header:has([expanded="false"])+nav {
+    transform: translateX(0);
+  }
+
+  burger-menu{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {}

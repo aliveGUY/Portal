@@ -1,0 +1,53 @@
+[expanded] {
+  border: 1px solid black;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger-stick {
+  width: 24px;
+  height: 5px;
+  background-color: black;
+  position: relative;
+}
+
+.burger-stick::before {
+  content: '';
+  width: 24px;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+}
+
+.burger-stick::after {
+  content: '';
+  width: 24px;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+}
+
+[expanded="true"] .burger-stick {
+  background-color: transparent;
+}
+
+[expanded="true"] .burger-stick::before {
+  transform: rotate(45deg);
+}
+
+[expanded="true"] .burger-stick::after {
+  transform: rotate(-45deg);
+
+}
+
+[expanded="false"] .burger-stick::before {
+  top: 10px
+}
+
+[expanded="false"] .burger-stick::after {
+  bottom: 10px
+}

@@ -2,24 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>@ViewData["Title"] - Portal</title>
-    <meta name="description" content="@ViewData["Description"]">
-    @RenderSection("head", required: false)
-    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
-    <script src="~/js/bootstrap.min.js"></script>
+  <meta charset="utf-8" />
+  <link rel="icon" href="~/img/logo.png" type="image/png">
+  <title>@ViewData["Title"] - Portal</title>
+  <meta name="description" content="@ViewData["Description"]">
+  @RenderSection("head", required: false)
+  <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+  <link rel="stylesheet" href="~/css/styles.css" />
+  <link rel="stylesheet" href="~/css/global.css">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a asp-page="Home">Home</a>
-            <a asp-page="CreatePost">New Post</a>
-        </nav>
-    </header>
-    <main role="main">
-        @RenderBody()
-    </main>
+  <div class="application-root">
+    <div class="navigation">
+      <header class="application-header">
+        <burger-menu expanded="false"></burger-menu>
+        <img class="application-icon" src="~/img/logo.png" />
+        <h1 class="application-name">Січ</h1>
+      </header>
+      <nav>
+        <div>
+          <a asp-page="Home">Home</a>
+        </div>
+        <div>
+          <a asp-page="CreatePost">New Post</a>
+        </div>
+      </nav>
+    </div>
+    <div class="main-page">
+      @RenderBody()
+    </div>
+  </div>
+  <script type="module" src="~/js/WebComponents/index.js"></script>
 </body>
 
 </html>
